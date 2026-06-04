@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contheo Transformação Digital — Identificamos gargalos operacionais e desenvolvemos soluções sob medida para automatizar processos empresariais.">
+    <title>Contheo Transformação Digital — Automação Inteligente de Processos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary:        #2563EB;
+            --primary-dark:   #1D4ED8;
+            --primary-darker: #1E3A8A;
+            --secondary:      #EFF6FF;
+            --bg:             #FFFFFF;
+            --text:           #1E293B;
+            --text-md:        #334155;
+            --text-lt:        #64748B;
+            --border:         #DBEAFE;
+            --shadow-sm:  0 2px 8px  rgba(37,99,235,0.08);
+            --shadow:     0 4px 20px rgba(37,99,235,0.13);
+            --shadow-blue:0 8px 30px rgba(37,99,235,0.28);
+            --r:  12px;
+            --rl: 20px;
+            --rxl:32px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img, svg { display: block; max-width: 100%; }
+        a { color: inherit; }
+
+        /* ===== UTILITIES ===== */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section    { padding: 96px 0; }
+        .text-center { text-align: center; }
+
+        .section-label {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(77,163,255,0.18);
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 3.5vw, 2.55rem);
+            font-weight: 800;
+            line-height: 1.22;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-lt);
+            max-width: 580px;
+            margin: 0 auto 56px;
+            line-height: 1.75;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.93rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: all 0.24s ease;
+            white-space: nowrap;
+            line-height: 1;
+        }
+        .btn-lg { padding: 17px 36px; font-size: 0.98rem; }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: var(--shadow-blue);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(77,163,255,0.38);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        .btn-white:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
+        }
+        .header.scrolled { box-shadow: var(--shadow); }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .logo-mark {
+            width: 38px; height: 38px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            flex-shrink: 0;
+        }
+        .logo-name  { font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+        .logo-name span { color: var(--primary); }
+        .logo-sub   { font-size: 0.62rem; color: var(--text-lt); font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
+
+        nav { display: flex; align-items: center; gap: 4px; }
+        nav a {
+            color: var(--text-md);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 8px 13px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        nav a:hover { color: var(--primary); background: var(--secondary); }
+        nav a.active { color: var(--primary); background: var(--secondary); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+        }
+        .hamburger span {
+            width: 22px; height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s;
+            display: block;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 70px; left: 0; right: 0;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 12px 16px 20px;
+            flex-direction: column;
+            gap: 2px;
+            box-shadow: var(--shadow);
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            color: var(--text-md);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 12px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .mobile-nav a:hover { color: var(--primary); background: var(--secondary); }
+        .mobile-nav .btn { margin-top: 8px; justify-content: center; }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding-top: 110px;
+            padding-bottom: 80px;
+            background: linear-gradient(150deg, #ffffff 0%, #f5faff 55%, var(--secondary) 100%);
+            overflow: hidden;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -180px; right: -180px;
+            width: 560px; height: 560px;
+            background: radial-gradient(circle, rgba(77,163,255,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--secondary);
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 50px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(77,163,255,0.22);
+        }
+        .badge-dot {
+            width: 7px; height: 7px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            font-weight: 800;
+            line-height: 1.17;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .hero-title .hl { color: var(--primary); }
+
+        .hero-sub {
+            font-size: 1.07rem;
+            color: var(--text-lt);
+            line-height: 1.78;
+            margin-bottom: 36px;
+            max-width: 500px;
+        }
+
+        .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 48px; }
+
+        .hero-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+        .stat-value { font-size: 1.55rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        .stat-label { font-size: 0.77rem; color: var(--text-lt); margin-top: 4px; line-height: 1.4; }
+
+        /* Hero Diagram */
+        .hero-diagram {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            aspect-ratio: 1;
+        }
+
+        .diagram-bg {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(77,163,255,0.07) 0%, rgba(234,244,255,0.5) 60%, transparent 100%);
+        }
+
+        .d-center {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            width: 90px; height: 90px;
+            background: white;
+            border-radius: 22px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 8px 32px rgba(77,163,255,0.22);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .d-center .d-letter { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        .d-center .d-brand  { font-size: 0.52rem; font-weight: 600; color: var(--text-lt); letter-spacing: 0.05em; text-transform: uppercase; }
+
+        .d-node {
+            position: absolute;
+            width: 72px; height: 72px;
+            background: white;
+            border-radius: 18px;
+            border: 1.5px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .d-node:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-blue);
+            transform: scale(1.08);
+        }
+        .d-node i    { font-size: 1.2rem; color: var(--primary); }
+        .d-node span { font-size: 0.57rem; font-weight: 600; color: var(--text-lt); text-align: center; line-height: 1.2; }
+
+        /* Node positions (circle radius ~38%) */
+        .dn-1 { top:  2%; left: 50%; transform: translateX(-50%); }
+        .dn-2 { top: 17%; right:  5%; }
+        .dn-3 { bottom: 17%; right:  5%; }
+        .dn-4 { bottom:  2%; left: 50%; transform: translateX(-50%); }
+        .dn-5 { bottom: 17%; left:  5%; }
+        .dn-6 { top: 17%; left:  5%; }
+
+        .diagram-lines {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .diagram-lines line {
+            stroke: var(--primary);
+            stroke-width: 1.5;
+            stroke-dasharray: 5 4;
+            opacity: 0.35;
+        }
+
+        .d-badge {
+            position: absolute;
+            background: var(--primary);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 50px;
+            white-space: nowrap;
+            box-shadow: var(--shadow-blue);
+            z-index: 15;
+        }
+        .d-badge-out {
+            background: white;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .db-1 { top:  -2%; left:  -8%; }
+        .db-2 { top:  -2%; right: -4%; }
+        .db-3 { bottom: -4%; left: -4%; }
+        .db-4 { bottom: -4%; right: -4%; }
+
+        /* ===== PROBLEMS ===== */
+        .problems { background: var(--bg); }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+        .p-card {
+            background: white;
+            border: 1.5px solid var(--border);
+            border-radius: var(--rl);
+            padding: 26px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: all 0.28s ease;
+        }
+        .p-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-blue);
+            transform: translateY(-4px);
+        }
+        .p-icon {
+            width: 46px; height: 46px; min-width: 46px;
+            background: var(--secondary);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            font-size: 1.15rem;
+            transition: all 0.28s;
+        }
+        .p-card:hover .p-icon { background: var(--primary); color: white; }
+        .p-card h3 { font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.45; }
+
+        .p-note {
+            text-align: center;
+            background: var(--secondary);
+            border-radius: var(--rl);
+            padding: 22px 32px;
+            max-width: 680px;
+            margin: 0 auto;
+            border: 1px solid rgba(77,163,255,0.15);
+        }
+        .p-note p { font-size: 0.97rem; color: var(--text-md); line-height: 1.7; }
+        .p-note strong { color: var(--primary); font-weight: 700; }
+
+        /* ===== HOW IT WORKS ===== */
+        .how { background: var(--secondary); }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: calc(12.5% + 18px);
+            right: calc(12.5% + 18px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), rgba(77,163,255,0.25));
+            pointer-events: none;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .step-num {
+            width: 70px; height: 70px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 18px rgba(77,163,255,0.18);
+            transition: all 0.28s;
+            position: relative;
+        }
+        .step:hover .step-num { background: var(--primary); color: white; transform: scale(1.1); }
+        .step-ico {
+            position: absolute;
+            top: -7px; right: -7px;
+            width: 24px; height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            font-size: 0.65rem;
+            transition: background 0.28s;
+        }
+        .step:hover .step-ico { background: white; color: var(--primary); }
+        .step h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .step p  { font-size: 0.85rem; color: var(--text-lt); line-height: 1.6; }
+
+        /* ===== BENEFITS ===== */
+        .benefits { background: var(--bg); }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .b-card {
+            background: white;
+            border: 1.5px solid var(--border);
+            border-radius: var(--rl);
+            padding: 32px 26px;
+            transition: all 0.28s;
+            position: relative;
+            overflow: hidden;
+        }
+        .b-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.28s;
+        }
+        .b-card:hover { box-shadow: var(--shadow-blue); transform: translateY(-4px); border-color: var(--primary); }
+        .b-card:hover::before { transform: scaleY(1); }
+        .b-icon {
+            width: 54px; height: 54px;
+            background: var(--secondary);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            font-size: 1.35rem;
+            margin-bottom: 16px;
+            transition: all 0.28s;
+        }
+        .b-card:hover .b-icon { background: var(--primary); color: white; }
+        .b-card h3 { font-size: 0.97rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .b-card p  { font-size: 0.86rem; color: var(--text-lt); line-height: 1.65; }
+
+        /* ===== SOLUTIONS ===== */
+        .solutions {
+            background: linear-gradient(135deg, #162035 0%, #1b3660 50%, #162035 100%);
+            color: white;
+        }
+        .solutions .section-label { background: rgba(77,163,255,0.18); color: #82c5ff; border-color: rgba(77,163,255,0.2); }
+        .solutions .section-title { color: white; }
+        .solutions .section-subtitle { color: rgba(255,255,255,0.62); }
+
+        .sol-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+        .sol-item {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--r);
+            padding: 18px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.26s;
+        }
+        .sol-item:hover {
+            background: rgba(77,163,255,0.18);
+            border-color: rgba(77,163,255,0.4);
+            transform: translateY(-2px);
+        }
+        .sol-icon {
+            width: 36px; height: 36px; min-width: 36px;
+            background: rgba(77,163,255,0.18);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        .sol-item span { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.88); line-height: 1.4; }
+
+        .sol-note { text-align: center; color: rgba(255,255,255,0.55); font-size: 0.9rem; font-style: italic; }
+        .sol-note strong { color: var(--primary); font-style: normal; font-weight: 600; }
+
+        /* ===== CTA ===== */
+        .cta-section { background: var(--secondary); }
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-darker) 100%);
+            border-radius: var(--rxl);
+            padding: 80px 48px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -120px; right: -120px;
+            width: 400px; height: 400px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cta-box::after {
+            content: '';
+            position: absolute;
+            bottom: -90px; left: -90px;
+            width: 320px; height: 320px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cta-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative; z-index: 1;
+        }
+        .cta-text {
+            font-size: 1.02rem;
+            color: rgba(255,255,255,0.82);
+            max-width: 520px;
+            margin: 0 auto 36px;
+            line-height: 1.75;
+            position: relative; z-index: 1;
+        }
+        .cta-box .btn { position: relative; z-index: 1; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #1a2335;
+            color: rgba(255,255,255,0.65);
+            padding: 64px 0 28px;
+        }
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none;
+            margin-bottom: 14px;
+        }
+        .footer-logo-mark {
+            width: 36px; height: 36px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: 800;
+        }
+        .footer-logo-text { font-size: 1rem; font-weight: 700; color: white; }
+        .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.48); line-height: 1.65; margin-bottom: 0; }
+
+        .footer-col h4 {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            margin-bottom: 16px;
+        }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+        .footer-links a { color: rgba(255,255,255,0.58); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--primary); }
+
+        .f-contact-item { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 10px; }
+        .f-contact-item i { color: var(--primary); font-size: 0.82rem; margin-top: 3px; flex-shrink: 0; }
+        .f-contact-item span, .f-contact-item a { font-size: 0.85rem; color: rgba(255,255,255,0.6); text-decoration: none; }
+        .f-contact-item a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 22px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+
+        /* ===== SCROLL TO TOP ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            width: 46px; height: 46px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-blue);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: all 0.3s;
+            z-index: 50;
+        }
+        .scroll-top.show { opacity: 1; transform: translateY(0); }
+        .scroll-top:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+        /* ===== FADE-IN ANIMATION ===== */
+        .fi {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.56s ease, transform 0.56s ease;
+        }
+        .fi.vis { opacity: 1; transform: translateY(0); }
+        .fi:nth-child(2) { transition-delay: 0.08s; }
+        .fi:nth-child(3) { transition-delay: 0.16s; }
+        .fi:nth-child(4) { transition-delay: 0.24s; }
+        .fi:nth-child(5) { transition-delay: 0.32s; }
+        .fi:nth-child(6) { transition-delay: 0.40s; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-sub    { margin-left: auto; margin-right: auto; }
+            .hero-btns   { justify-content: center; }
+            .hero-stats  { justify-content: center; }
+            .hero-visual-col { order: -1; }
+            .hero-diagram { max-width: 340px; }
+
+            .problems-grid { grid-template-columns: 1fr 1fr; }
+            .steps         { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .steps::before { display: none; }
+            .sol-grid      { grid-template-columns: 1fr 1fr; }
+            .footer-inner  { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 64px 0; }
+            nav, .header-cta { display: none; }
+            .hamburger { display: flex; }
+
+            .hero { padding-top: 96px; }
+
+            .problems-grid  { grid-template-columns: 1fr; }
+            .benefits-grid  { grid-template-columns: 1fr; }
+            .steps          { grid-template-columns: 1fr; }
+            .sol-grid        { grid-template-columns: 1fr 1fr; }
+            .footer-inner   { grid-template-columns: 1fr 1fr; }
+            .cta-box        { padding: 52px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .sol-grid     { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .hero-stats   { gap: 20px; }
+            .hero-diagram { max-width: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===================================================
+     HEADER
+=================================================== -->
+<header class="header" id="header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="#inicio" class="logo" aria-label="Contheo Transformação Digital - Início">
+                <div class="logo-mark">C</div>
+                <div>
+                    <div class="logo-name">Contheo <span>Transformação Digital</span></div>
+                    <div class="logo-sub">Automação de Processos</div>
+                </div>
+            </a>
+
+            <nav aria-label="Navegação principal">
+                <a href="#inicio">Início</a>
+                <a href="#como-funciona">Como Funciona</a>
+                <a href="#beneficios">Benefícios</a>
+                <a href="diagnostico.html">Contato</a>
+            </nav>
+
+            <a href="diagnostico.html" class="btn btn-primary header-cta" aria-label="Solicitar diagnóstico">
+                <i class="fas fa-rocket" aria-hidden="true"></i>
+                Solicitar Diagnóstico
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile">
+        <a href="#inicio">Início</a>
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="diagnostico.html">Contato</a>
+        <a href="diagnostico.html" class="btn btn-primary">
+            <i class="fas fa-rocket" aria-hidden="true"></i> Solicitar Diagnóstico
+        </a>
+    </nav>
+</header>
+
+
+<!-- ===================================================
+     HERO
+=================================================== -->
+<section class="hero section" id="inicio">
+    <div class="container">
+        <div class="hero-inner">
+            <!-- Content -->
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot" aria-hidden="true"></span>
+                    Automação inteligente para empresas
+                </div>
+                <h1 class="hero-title">
+                    Transformamos tarefas manuais em processos <span class="hl">automatizados.</span>
+                </h1>
+                <p class="hero-sub">
+                    Identificamos gargalos operacionais e desenvolvemos soluções sob medida para eliminar retrabalho, reduzir erros e aumentar a produtividade da sua empresa.
+                </p>
+                <div class="hero-btns">
+                    <a href="diagnostico.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                        Solicitar Diagnóstico Gratuito
+                    </a>
+                    <a href="diagnostico.html" class="btn btn-outline btn-lg">
+                        <i class="fas fa-comments" aria-hidden="true"></i>
+                        Falar com Especialista
+                    </a>
+                </div>
+            </div>
+
+            <!-- Diagram Illustration -->
+            <div class="hero-visual-col" aria-hidden="true">
+                <div class="hero-diagram">
+                    <div class="diagram-bg"></div>
+
+                    <!-- Connecting lines via SVG -->
+                    <svg class="diagram-lines" viewBox="0 0 480 480">
+                        <!-- center: 240,240 | node positions (percentage of 480) -->
+                        <!-- dn-1 top    : 240, 30  -->
+                        <!-- dn-2 rt-top : 420,102  -->
+                        <!-- dn-3 rb     : 420,378  -->
+                        <!-- dn-4 bottom : 240,450  -->
+                        <!-- dn-5 lb     : 60, 378  -->
+                        <!-- dn-6 lt     : 60, 102  -->
+                        <line x1="240" y1="195" x2="240" y2="66"/>
+                        <line x1="285" y1="215" x2="420" y2="138"/>
+                        <line x1="285" y1="265" x2="420" y2="342"/>
+                        <line x1="240" y1="285" x2="240" y2="414"/>
+                        <line x1="195" y1="265" x2="60"  y2="342"/>
+                        <line x1="195" y1="215" x2="60"  y2="138"/>
+                    </svg>
+
+                    <!-- Center hub -->
+                    <div class="d-center">
+                        <span class="d-letter">C</span>
+                        <span class="d-brand">Contheo</span>
+                    </div>
+
+                    <!-- Satellite nodes -->
+                    <div class="d-node dn-1">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Relatórios</span>
+                    </div>
+                    <div class="d-node dn-2">
+                        <i class="fas fa-plug"></i>
+                        <span>Integração</span>
+                    </div>
+                    <div class="d-node dn-3">
+                        <i class="fas fa-robot"></i>
+                        <span>Automação</span>
+                    </div>
+                    <div class="d-node dn-4">
+                        <i class="fas fa-cogs"></i>
+                        <span>Processos</span>
+                    </div>
+                    <div class="d-node dn-5">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Documentos</span>
+                    </div>
+                    <div class="d-node dn-6">
+                        <i class="fas fa-envelope"></i>
+                        <span>E-mails</span>
+                    </div>
+
+                    <!-- Floating badges -->
+                    <div class="d-badge db-1">✓ Automatizado</div>
+                    <div class="d-badge db-2">-80% Retrabalho</div>
+                    <div class="d-badge d-badge-out db-3">+40h/mês livres</div>
+                    <div class="d-badge d-badge-out db-4">Sob medida ✓</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===================================================
+     PROBLEM
+=================================================== -->
+<section class="section problems" id="problemas">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">Desafios do Dia a Dia</span>
+            <h2 class="section-title">Sua equipe perde tempo com tarefas repetitivas?</h2>
+            <p class="section-subtitle">Identifique os gargalos que estão consumindo o tempo e a energia da sua operação.</p>
+        </div>
+
+        <div class="problems-grid">
+            <div class="p-card fi">
+                <div class="p-icon"><i class="fas fa-table" aria-hidden="true"></i></div>
+                <h3>Atualização manual de planilhas</h3>
+            </div>
+            <div class="p-card fi">
+                <div class="p-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+                <h3>Envio recorrente de e-mails</h3>
+            </div>
+            <div class="p-card fi">
+                <div class="p-icon"><i class="fas fa-file-alt" aria-hidden="true"></i></div>
+                <h3>Conferência de documentos</h3>
+            </div>
+            <div class="p-card fi">
+                <div class="p-icon"><i class="fas fa-plug" aria-hidden="true"></i></div>
+                <h3>Integração entre sistemas</h3>
+            </div>
+            <div class="p-card fi">
+                <div class="p-icon"><i class="fas fa-file-invoice" aria-hidden="true"></i></div>
+                <h3>Captura de XMLs fiscais</h3>
+            </div>
+            <div class="p-card fi">
+                <div class="p-icon"><i class="fas fa-chart-bar" aria-hidden="true"></i></div>
+                <h3>Geração manual de relatórios</h3>
+            </div>
+        </div>
+
+        <div class="p-note">
+            <p>Pequenas tarefas repetidas diariamente podem consumir <strong>dezenas de horas por mês</strong> e aumentar significativamente a chance de <strong>erros operacionais</strong>. Chegou a hora de mudar isso.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===================================================
+     HOW IT WORKS
+=================================================== -->
+<section class="section how" id="como-funciona">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">Nosso Processo</span>
+            <h2 class="section-title">Como a Contheo Transformação Digital atua</h2>
+            <p class="section-subtitle">Um processo simples e transparente, do diagnóstico à implementação.</p>
+        </div>
+
+        <div class="steps">
+            <div class="step fi">
+                <div class="step-num">
+                    1
+                    <div class="step-ico"><i class="fas fa-search" aria-hidden="true"></i></div>
+                </div>
+                <h3>Diagnóstico</h3>
+                <p>Analisamos seus processos e identificamos oportunidades de automação.</p>
+            </div>
+            <div class="step fi">
+                <div class="step-num">
+                    2
+                    <div class="step-ico"><i class="fas fa-map" aria-hidden="true"></i></div>
+                </div>
+                <h3>Mapeamento</h3>
+                <p>Entendemos os gargalos e estimamos os ganhos potenciais.</p>
+            </div>
+            <div class="step fi">
+                <div class="step-num">
+                    3
+                    <div class="step-ico"><i class="fas fa-code" aria-hidden="true"></i></div>
+                </div>
+                <h3>Implementação</h3>
+                <p>Desenvolvemos uma solução simples e personalizada para sua necessidade.</p>
+            </div>
+            <div class="step fi">
+                <div class="step-num">
+                    4
+                    <div class="step-ico"><i class="fas fa-check" aria-hidden="true"></i></div>
+                </div>
+                <h3>Acompanhamento</h3>
+                <p>Validamos os resultados e garantimos o funcionamento da solução.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===================================================
+     BENEFITS
+=================================================== -->
+<section class="section benefits" id="beneficios">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">Por que Automatizar</span>
+            <h2 class="section-title">Resultados que fazem diferença</h2>
+            <p class="section-subtitle">Empresas que automatizam seus processos ganham vantagem competitiva real e duradoura.</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="b-card fi">
+                <div class="b-icon"><i class="fas fa-clock" aria-hidden="true"></i></div>
+                <h3>Redução de tarefas manuais</h3>
+                <p>Libere sua equipe de atividades repetitivas para focar no que realmente importa para o negócio.</p>
+            </div>
+            <div class="b-card fi">
+                <div class="b-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                <h3>Menos erros operacionais</h3>
+                <p>Processos automatizados eliminam falhas humanas e garantem consistência e confiabilidade nos resultados.</p>
+            </div>
+            <div class="b-card fi">
+                <div class="b-icon"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></div>
+                <h3>Mais produtividade</h3>
+                <p>Automatize o que é rotina e multiplique a capacidade produtiva da sua equipe sem aumentar custos.</p>
+            </div>
+            <div class="b-card fi">
+                <div class="b-icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+                <h3>Processos mais rápidos</h3>
+                <p>O que levava horas passa a ser concluído em minutos, com muito mais agilidade e precisão.</p>
+            </div>
+            <div class="b-card fi">
+                <div class="b-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+                <h3>Melhor aproveitamento da equipe</h3>
+                <p>Redirecione talentos para atividades estratégicas que geram mais valor para o negócio.</p>
+            </div>
+            <div class="b-card fi">
+                <div class="b-icon"><i class="fas fa-puzzle-piece" aria-hidden="true"></i></div>
+                <h3>Soluções sob medida para sua realidade</h3>
+                <p>Cada solução é desenvolvida exclusivamente para a sua necessidade e realidade operacional.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===================================================
+     SOLUTIONS
+=================================================== -->
+<section class="section solutions" id="solucoes">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">Exemplos de Automação</span>
+            <h2 class="section-title">O que podemos automatizar</h2>
+            <p class="section-subtitle">Veja alguns exemplos do que já automatizamos para nossos clientes.</p>
+        </div>
+
+        <div class="sol-grid">
+            <div class="sol-item fi">
+                <div class="sol-icon"><i class="fas fa-plug" aria-hidden="true"></i></div>
+                <span>Integração entre sistemas</span>
+            </div>
+            <div class="sol-item fi">
+                <div class="sol-icon"><i class="fas fa-file-invoice" aria-hidden="true"></i></div>
+                <span>Processamento de XMLs fiscais</span>
+            </div>
+            <div class="sol-item fi">
+                <div class="sol-icon"><i class="fas fa-table" aria-hidden="true"></i></div>
+                <span>Atualização automática de planilhas</span>
+            </div>
+            <div class="sol-item fi">
+                <div class="sol-icon"><i class="fas fa-database" aria-hidden="true"></i></div>
+                <span>Consolidação de dados</span>
+            </div>
+            <div class="sol-item fi">
+                <div class="sol-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+                <span>Relatórios automáticos</span>
+            </div>
+            <div class="sol-item fi">
+                <div class="sol-icon"><i class="fas fa-envelope-open-text" aria-hidden="true"></i></div>
+                <span>Envio de e-mails recorrentes</span>
+            </div>
+            <div class="sol-item fi">
+                <div class="sol-icon"><i class="fas fa-balance-scale" aria-hidden="true"></i></div>
+                <span>Conciliações operacionais</span>
+            </div>
+            <div class="sol-item fi">
+                <div class="sol-icon"><i class="fas fa-sitemap" aria-hidden="true"></i></div>
+                <span>Fluxos administrativos repetitivos</span>
+            </div>
+        </div>
+
+        <p class="sol-note">
+            <strong>Cada solução é personalizada</strong> conforme a necessidade e realidade de cada cliente.
+        </p>
+    </div>
+</section>
+
+
+<!-- ===================================================
+     CTA
+=================================================== -->
+<section class="section cta-section">
+    <div class="container">
+        <div class="cta-box">
+            <h2 class="cta-title">Descubra onde sua empresa pode economizar tempo.</h2>
+            <p class="cta-text">
+                Solicite um diagnóstico inicial e conheça oportunidades de automação que podem gerar ganhos imediatos para sua operação.
+            </p>
+            <a href="diagnostico.html" class="btn btn-white btn-lg">
+                <i class="fas fa-rocket" aria-hidden="true"></i>
+                Solicitar Diagnóstico
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===================================================
+     FOOTER
+=================================================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div>
+                <a href="#inicio" class="footer-logo" aria-label="Contheo Transformação Digital - Topo da página">
+                    <div class="footer-logo-mark">C</div>
+                    <span class="footer-logo-text">Contheo Transformação Digital</span>
+                </a>
+                <p class="footer-tagline">Automação inteligente para processos empresariais. Transformamos sua operação com soluções digitais sob medida.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#beneficios">Benefícios</a></li>
+                    <li><a href="diagnostico.html">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Soluções</h4>
+                <ul class="footer-links">
+                    <li><a href="#solucoes">Integração de Sistemas</a></li>
+                    <li><a href="#solucoes">Processamento de XMLs</a></li>
+                    <li><a href="#solucoes">Relatórios Automáticos</a></li>
+                    <li><a href="#solucoes">Fluxos Administrativos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <div class="f-contact-item">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <a href="diagnostico.html">Solicitar Diagnóstico</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="footer-copy">© 2025 Contheo Transformação Digital — Todos os direitos reservados.</span>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+
+<!-- ===================================================
+     SCRIPTS
+=================================================== -->
+<script>
+(function () {
+    'use strict';
+
+    /* ---- Header scroll effect ---- */
+    const header    = document.getElementById('header');
+    const scrollBtn = document.getElementById('scrollTop');
+
+    function onScroll() {
+        const y = window.scrollY;
+        header.classList.toggle('scrolled', y > 50);
+        scrollBtn.classList.toggle('show', y > 400);
+
+        // Active nav link
+        let active = '';
+        document.querySelectorAll('section[id]').forEach(sec => {
+            if (y >= sec.offsetTop - 120) active = sec.id;
+        });
+        document.querySelectorAll('nav a').forEach(link => {
+            const href = link.getAttribute('href').replace('#', '');
+            link.classList.toggle('active', href === active);
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ---- Scroll to top ---- */
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ---- Hamburger menu ---- */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    /* ---- Intersection observer (fade-in) ---- */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+    /* ---- Smooth scroll for anchor links ---- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+            const target = document.querySelector(anchor.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+})();
+</script>
+</body>
+</html>
