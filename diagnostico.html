@@ -71,6 +71,16 @@
         .yn-btn:hover{border-color:var(--primary);color:var(--text);background:var(--secondary)}
         .yn-btn.selected-sim{background:#f0fdf4;border-color:#22c55e;color:#15803d;box-shadow:0 2px 8px rgba(34,197,94,.15)}
         .yn-btn.selected-nao{background:#fff1f2;border-color:#f43f5e;color:#be123c;box-shadow:0 2px 8px rgba(244,63,94,.15)}
+        .yn-btn.selected-na{background:#f1f5f9;border-color:#94a3b8;color:#475569;box-shadow:0 2px 8px rgba(148,163,184,.15)}
+        .yn-desc{font-size:.78rem;color:var(--text-lt);margin:0 0 12px 30px;line-height:1.45;font-weight:400}
+        .cond-field{margin-top:10px;padding:14px 16px;background:var(--bg);border-left:3px solid var(--primary);border-radius:0 var(--r) var(--r) 0;display:none}
+        .cond-field.show{display:block}
+        .cond-field label{font-size:.8rem;font-weight:600;color:var(--text-md);margin-bottom:6px;display:block}
+        .cond-field input[type="text"]{width:100%;padding:9px 13px;border:1.5px solid var(--border);border-radius:var(--r);font-family:inherit;font-size:.84rem;color:var(--text);background:white;transition:border-color .2s,box-shadow .2s;outline:none}
+        .cond-field input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+        .cond-field input::placeholder{color:#b0bec5}
+        .f-group select{width:100%;padding:11px 15px;border:1.5px solid var(--border);border-radius:var(--r);font-family:inherit;font-size:.88rem;color:var(--text);background:white;transition:border-color .2s,box-shadow .2s;outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+        .f-group select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
         .nav-buttons{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:36px;padding-top:24px;border-top:1.5px solid var(--border)}
         .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 30px;border-radius:50px;font-family:inherit;font-size:.9rem;font-weight:700;letter-spacing:.01em;cursor:pointer;border:none;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;line-height:1;white-space:nowrap;user-select:none;-webkit-tap-highlight-color:transparent}
         .btn:active{transform:translateY(1px) scale(.98)!important}.btn:focus-visible{outline:3px solid var(--primary);outline-offset:3px}
@@ -208,14 +218,27 @@
                 </div>
             </div>
             <div class="f-row">
-                <div class="f-group" id="fg-cargo">
-                    <label for="cargo">Cargo <span style="color:var(--error)">*</span></label>
-                    <input type="text" id="cargo" name="cargo" placeholder="Ex.: Gestor, Diretor, Analista...">
-                    <span class="f-error">Informe seu cargo.</span>
+                <div class="f-group">
+                    <label for="faturamento_medio">Faturamento médio mensal</label>
+                    <select id="faturamento_medio" name="faturamento_medio">
+                        <option value="">Selecione uma faixa</option>
+                        <option value="ate50k">Até R$ 50 mil</option>
+                        <option value="50k-200k">R$ 50 mil – R$ 200 mil</option>
+                        <option value="200k-500k">R$ 200 mil – R$ 500 mil</option>
+                        <option value="500k-1m">R$ 500 mil – R$ 1 milhão</option>
+                        <option value="acima1m">Acima de R$ 1 milhão</option>
+                    </select>
                 </div>
                 <div class="f-group">
-                    <label for="segmento">Segmento da empresa</label>
-                    <input type="text" id="segmento" name="segmento" placeholder="Ex.: Varejo, Indústria, Serviços...">
+                    <label for="colaboradores">Quantidade aproximada de colaboradores</label>
+                    <select id="colaboradores" name="colaboradores">
+                        <option value="">Selecione uma faixa</option>
+                        <option value="1-5">1 a 5</option>
+                        <option value="6-20">6 a 20</option>
+                        <option value="21-50">21 a 50</option>
+                        <option value="51-100">51 a 100</option>
+                        <option value="acima100">Acima de 100</option>
+                    </select>
                 </div>
             </div>
             <div class="f-row">
@@ -237,35 +260,51 @@
                 <div class="section-icon"><i class="fas fa-building" aria-hidden="true"></i></div>
                 <div>
                     <h2>Área Administrativa</h2>
-                    <p>Avalie o nível de digitalização dos processos administrativos. <strong>Peso: 20% da nota geral.</strong></p>
+                    <p>Avalie o nível de digitalização dos processos administrativos da sua empresa.</p>
                 </div>
             </div>
-            <div class="yn-group" data-qid="adm_erp" data-peso="1">
-                <div class="yn-question"><span class="q-num">1</span> Possui ERP implantado? <span class="yn-peso-badge"><i class="fas fa-weight-hanging"></i> Peso 1,0</span></div>
+            <div class="yn-group" data-qid="adm_erp" data-peso="1" data-cond-sim="cond-adm-erp">
+                <div class="yn-question"><span class="q-num">1</span> Possui ERP implantado?</div>
+                <div class="yn-desc">Sistema integrado de gestão que centraliza processos como compras, estoque e financeiro.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
+                </div>
+                <div class="cond-field" id="cond-adm-erp">
+                    <label for="adm_erp_qual">Qual ERP? (opcional)</label>
+                    <input type="text" id="adm_erp_qual" name="adm_erp_qual" placeholder="Ex.: SAP, TOTVS, Omie, Bling...">
                 </div>
             </div>
-            <div class="yn-group" data-qid="adm_indicadores" data-peso="0.5">
-                <div class="yn-question"><span class="q-num">2</span> Acesso rápido aos indicadores gerenciais? <span class="yn-peso-badge"><i class="fas fa-weight-hanging"></i> Peso 0,5</span></div>
+            <div class="yn-group" data-qid="adm_indicadores" data-peso="0.5" data-cond-nao="cond-adm-ind">
+                <div class="yn-question"><span class="q-num">2</span> Acesso rápido aos indicadores gerenciais?</div>
+                <div class="yn-desc">Dashboards ou relatórios atualizados com dados de desempenho da empresa em tempo real.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
+                </div>
+                <div class="cond-field" id="cond-adm-ind">
+                    <label for="adm_ind_faltam">Quais indicadores você sente falta? (opcional)</label>
+                    <input type="text" id="adm_ind_faltam" name="adm_ind_faltam" placeholder="Ex.: margem de lucro, giro de estoque, inadimplência...">
                 </div>
             </div>
             <div class="yn-group" data-qid="adm_nuvem" data-peso="0.25">
-                <div class="yn-question"><span class="q-num">3</span> Controle em nuvem de documentos? <small style="font-weight:400;color:var(--text-lt)">(contratos, propostas, requisições, aprovações)</small> <span class="yn-peso-badge"><i class="fas fa-weight-hanging"></i> Peso 0,25</span></div>
+                <div class="yn-question"><span class="q-num">3</span> Controle em nuvem de documentos?</div>
+                <div class="yn-desc">Contratos, propostas, requisições e aprovações armazenados digitalmente com acesso remoto.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="adm_backup" data-peso="0.3">
-                <div class="yn-question"><span class="q-num">4</span> Backup automático de arquivos em nuvem? <span class="yn-peso-badge"><i class="fas fa-weight-hanging"></i> Peso 0,3</span></div>
+                <div class="yn-question"><span class="q-num">4</span> Backup automático de arquivos em nuvem?</div>
+                <div class="yn-desc">Cópias de segurança dos dados da empresa realizadas de forma automática e periódica.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
         </div>
@@ -276,35 +315,47 @@
                 <div class="section-icon"><i class="fas fa-handshake" aria-hidden="true"></i></div>
                 <div>
                     <h2>Área Comercial</h2>
-                    <p>Avalie a maturidade digital dos processos de vendas e relacionamento. <strong>Peso: 30% da nota geral.</strong></p>
+                    <p>Avalie a maturidade digital dos processos de vendas e relacionamento com clientes.</p>
                 </div>
             </div>
-            <div class="yn-group" data-qid="com_crm" data-peso="1">
+            <div class="yn-group" data-qid="com_crm" data-peso="1" data-cond-sim="cond-com-crm">
                 <div class="yn-question"><span class="q-num">1</span> Utiliza CRM?</div>
+                <div class="yn-desc">Ferramenta digital para gerenciar relacionamentos, pipeline de vendas e histórico de clientes.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
+                </div>
+                <div class="cond-field" id="cond-com-crm">
+                    <label for="com_crm_qual">Qual CRM? (opcional)</label>
+                    <input type="text" id="com_crm_qual" name="com_crm_qual" placeholder="Ex.: HubSpot, Pipedrive, RD Station, Salesforce...">
                 </div>
             </div>
             <div class="yn-group" data-qid="com_propostas" data-peso="1">
-                <div class="yn-question"><span class="q-num">2</span> Propostas sistematizadas?</div>
+                <div class="yn-question"><span class="q-num">2</span> Possui histórico digitalizado de orçamentos e propostas enviados/recebidos?</div>
+                <div class="yn-desc">Registro centralizado e acessível de todas as propostas comerciais da empresa.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="com_campanhas" data-peso="1">
                 <div class="yn-question"><span class="q-num">3</span> Campanhas e follow-up automático?</div>
+                <div class="yn-desc">Envio automatizado de e-mails, mensagens e lembretes de contato com leads e clientes.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="com_whatsapp" data-peso="1">
                 <div class="yn-question"><span class="q-num">4</span> WhatsApp integrado ao processo comercial?</div>
+                <div class="yn-desc">Uso do WhatsApp com registro de conversas, atendimento padronizado ou integração a um CRM.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
         </div>
@@ -315,35 +366,43 @@
                 <div class="section-icon"><i class="fas fa-dollar-sign" aria-hidden="true"></i></div>
                 <div>
                     <h2>Área Financeira</h2>
-                    <p>Avalie a digitalização dos processos financeiros da empresa. <strong>Peso: 25% da nota geral.</strong></p>
+                    <p>Avalie a digitalização dos processos financeiros da empresa.</p>
                 </div>
             </div>
             <div class="yn-group" data-qid="fin_dre" data-peso="1">
                 <div class="yn-question"><span class="q-num">1</span> Possui DRE Gerencial atualizado?</div>
+                <div class="yn-desc">Demonstrativo de resultados (receitas, custos e lucro) disponível de forma prática e regular.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="fin_conciliacao" data-peso="1">
                 <div class="yn-question"><span class="q-num">2</span> Faz conciliação bancária de forma automatizada?</div>
+                <div class="yn-desc">Conferência entre extratos bancários e registros internos feita via sistema, sem trabalho manual.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="fin_emissao" data-peso="1">
                 <div class="yn-question"><span class="q-num">3</span> Emissão de notas fiscais automatizada ou integrada ao sistema?</div>
+                <div class="yn-desc">Geração de NF-e ligada ao fluxo de vendas, sem necessidade de lançamento manual separado.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="fin_cobranca" data-peso="1">
                 <div class="yn-question"><span class="q-num">4</span> Envio automático de cobrança por e-mail ou WhatsApp?</div>
+                <div class="yn-desc">Lembretes e cobranças disparados automaticamente conforme vencimento, sem depender de pessoa.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
         </div>
@@ -354,35 +413,43 @@
                 <div class="section-icon"><i class="fas fa-industry" aria-hidden="true"></i></div>
                 <div>
                     <h2>Área de Produção</h2>
-                    <p>Avalie o nível de digitalização e controle dos processos produtivos. <strong>Peso: 25% da nota geral.</strong></p>
+                    <p>Avalie o nível de digitalização e controle dos processos produtivos.</p>
                 </div>
             </div>
             <div class="yn-group" data-qid="pro_pcp" data-peso="1">
                 <div class="yn-question"><span class="q-num">1</span> Executam controle de PCP e ordens de serviço de forma digital?</div>
+                <div class="yn-desc">Planejamento e Controle da Produção com ordens de serviço digitais ao invés de papel ou planilhas.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="pro_estoque" data-peso="1">
                 <div class="yn-question"><span class="q-num">2</span> Controle de estoque integrado ao sistema de gestão?</div>
+                <div class="yn-desc">Entradas e saídas de estoque lançadas diretamente no sistema, sem planilha paralela.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="pro_planejamento" data-peso="1">
-                <div class="yn-question"><span class="q-num">3</span> Planejamento e apontamento digital da produção?</div>
+                <div class="yn-question"><span class="q-num">3</span> Planejamento e apontamento digital de resultados?</div>
+                <div class="yn-desc">Metas e resultados produtivos registrados digitalmente, permitindo acompanhamento e análise.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="pro_coleta" data-peso="1">
-                <div class="yn-question"><span class="q-num">4</span> Coleta automática de dados? <small style="font-weight:400;color:var(--text-lt)">(ex: horas trabalhadas, produtividade)</small></div>
+                <div class="yn-question"><span class="q-num">4</span> Coleta automática de dados?</div>
+                <div class="yn-desc">Horas trabalhadas, produtividade ou indicadores coletados automaticamente, sem digitação manual.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">✅ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">❌ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
         </div>
@@ -398,65 +465,83 @@
             </div>
             <div class="yn-group" data-qid="aut_planilhas" data-peso="1">
                 <div class="yn-question"><span class="q-num">1</span> Existem planilhas paralelas ao sistema principal?</div>
+                <div class="yn-desc">Uso de planilhas Excel/Google Sheets para compensar limitações do sistema oficial.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="aut_retrabalho" data-peso="1">
                 <div class="yn-question"><span class="q-num">2</span> Existe retrabalho frequente nos processos?</div>
+                <div class="yn-desc">Tarefas que precisam ser refeitas por erros, informações incorretas ou falta de padronização.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="aut_digitacao" data-peso="1">
                 <div class="yn-question"><span class="q-num">3</span> Existe digitação manual de informações?</div>
+                <div class="yn-desc">Dados inseridos manualmente em sistemas ou documentos que poderiam ser preenchidos automaticamente.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="aut_sistemas" data-peso="1">
                 <div class="yn-question"><span class="q-num">4</span> Os sistemas utilizados não conversam entre si?</div>
+                <div class="yn-desc">Falta de integração entre ferramentas que obriga a copiar dados de um sistema para outro.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="aut_repetitivas" data-peso="1">
                 <div class="yn-question"><span class="q-num">5</span> Existem tarefas repetitivas que tomam muito tempo?</div>
+                <div class="yn-desc">Atividades rotineiras e previsíveis que poderiam ser automatizadas para liberar a equipe.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="aut_aprovacoes" data-peso="1">
                 <div class="yn-question"><span class="q-num">6</span> Existem aprovações manuais que travam o fluxo?</div>
+                <div class="yn-desc">Processos que ficam parados aguardando assinatura ou confirmação presencial de alguém.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="aut_papel" data-peso="1">
                 <div class="yn-question"><span class="q-num">7</span> Existem controles feitos em papel?</div>
+                <div class="yn-desc">Registros físicos (fichas, cadernos, formulários) que substituem sistemas digitais.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="aut_indicadores" data-peso="1">
                 <div class="yn-question"><span class="q-num">8</span> Indicadores são gerados manualmente?</div>
+                <div class="yn-desc">Relatórios e métricas montados manualmente a partir de dados espalhados em várias fontes.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="yn-group" data-qid="aut_copiados" data-peso="1">
                 <div class="yn-question"><span class="q-num">9</span> Informações precisam ser copiadas ou digitadas em mais de um sistema?</div>
+                <div class="yn-desc">O mesmo dado é inserido em dois ou mais lugares diferentes por falta de integração.</div>
                 <div class="yn-buttons">
                     <button type="button" class="yn-btn" data-val="sim">⚠️ Sim</button>
                     <button type="button" class="yn-btn" data-val="nao">✅ Não</button>
+                    <button type="button" class="yn-btn" data-val="na">— Não se aplica</button>
                 </div>
             </div>
             <div class="f-group" style="margin-top:24px;">
@@ -576,10 +661,10 @@ const CLS=[
 ];
 
 const REC={
-  'Crítico':           'Sua empresa ainda está nos primeiros passos da transformação digital. Há grandes oportunidades de redução de custos e ganhos de produtividade. Recomendamos iniciar com a implantação de um ERP e a eliminação das principais atividades manuais.',
-  'Em Desenvolvimento':'Sua empresa já iniciou a jornada digital, mas ainda há muito espaço para evoluir. Priorize a integração entre sistemas e a automação das tarefas mais repetitivas para liberar sua equipe para atividades estratégicas.',
-  'Intermediário':     'Sua empresa tem uma base digital sólida. O próximo passo é avançar nas áreas com menor pontuação e explorar automações mais sofisticadas para ganhar escala sem aumentar o custo operacional.',
-  'Avançado':          'Parabéns! Sua empresa está bem digitalizada. O foco agora deve ser inovação contínua, uso de inteligência de dados e otimização dos processos já automatizados para maximizar resultados.'
+  'Crítico':           'O diagnóstico aponta baixo nível de maturidade digital, com diversas áreas ainda sem ferramentas adequadas e grande volume de processos manuais. Um especialista pode entrar em contato para orientar os primeiros passos da sua transformação digital.',
+  'Em Desenvolvimento':'Sua empresa já iniciou a digitalização em algumas áreas, mas ainda há lacunas importantes que limitam a eficiência operacional. Um especialista pode entrar em contato para ajudar a priorizar as mudanças de maior impacto.',
+  'Intermediário':     'Sua empresa tem uma base digital consistente, com pontos específicos a evoluir nas áreas com menor pontuação. Um especialista pode entrar em contato para definir os próximos passos de forma estratégica.',
+  'Avançado':          'Sua empresa apresenta alto nível de maturidade digital em todas as áreas avaliadas. Um especialista pode entrar em contato para explorar oportunidades pontuais de refinamento e inovação contínua.'
 };
 
 const TOTAL_STEPS=6;
@@ -596,17 +681,22 @@ const btnNext  =document.getElementById('btn-next');
 const resultScr=document.getElementById('result-screen');
 const navBtns  =document.getElementById('nav-buttons');
 
-/* ---- Yes/No buttons ---- */
+/* ---- Yes/No/NA buttons ---- */
 document.querySelectorAll('.yn-group').forEach(g=>{
   const qid=g.dataset.qid;
   g.querySelectorAll('.yn-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
       const val=btn.dataset.val;
       answers[qid]=val;
-      g.querySelectorAll('.yn-btn').forEach(b=>b.classList.remove('selected-sim','selected-nao'));
-      btn.classList.add(val==='sim'?'selected-sim':'selected-nao');
-      g.style.borderColor=val==='sim'?'#22c55e':'#f43f5e';
+      g.querySelectorAll('.yn-btn').forEach(b=>b.classList.remove('selected-sim','selected-nao','selected-na'));
+      btn.classList.add(val==='sim'?'selected-sim':val==='nao'?'selected-nao':'selected-na');
+      g.style.borderColor=val==='sim'?'#22c55e':val==='nao'?'#f43f5e':'#94a3b8';
       setTimeout(()=>{g.style.borderColor='';},800);
+      // Conditional fields
+      const condSim=g.dataset.condSim;
+      const condNao=g.dataset.condNao;
+      if(condSim){const el=document.getElementById(condSim);if(el)el.classList.toggle('show',val==='sim');}
+      if(condNao){const el=document.getElementById(condNao);if(el)el.classList.toggle('show',val==='nao');}
     });
   });
 });
@@ -614,10 +704,15 @@ document.querySelectorAll('.yn-group').forEach(g=>{
 function restoreAnswers(){
   document.querySelectorAll('.yn-group').forEach(g=>{
     const qid=g.dataset.qid;
-    g.querySelectorAll('.yn-btn').forEach(b=>b.classList.remove('selected-sim','selected-nao'));
+    g.querySelectorAll('.yn-btn').forEach(b=>b.classList.remove('selected-sim','selected-nao','selected-na'));
     if(answers[qid]){
-      const t=g.querySelector('[data-val="'+answers[qid]+'"]');
-      if(t)t.classList.add(answers[qid]==='sim'?'selected-sim':'selected-nao');
+      const v=answers[qid];
+      const t=g.querySelector('[data-val="'+v+'"]');
+      if(t)t.classList.add(v==='sim'?'selected-sim':v==='nao'?'selected-nao':'selected-na');
+      // Restore conditional fields
+      const condSim=g.dataset.condSim;const condNao=g.dataset.condNao;
+      if(condSim){const el=document.getElementById(condSim);if(el)el.classList.toggle('show',v==='sim');}
+      if(condNao){const el=document.getElementById(condNao);if(el)el.classList.toggle('show',v==='nao');}
     }
   });
 }
@@ -656,7 +751,7 @@ function showStep(dir){
 function validateStep(idx){
   if(idx!==0)return true;
   let ok=true;
-  ['nome_empresa','responsavel','cargo','email_diag'].forEach(name=>{
+  ['nome_empresa','responsavel','email_diag'].forEach(name=>{
     const el=document.getElementById(name);
     const grp=el&&el.closest('.f-group');
     if(!el)return;
@@ -695,6 +790,7 @@ function computeScores(){
   Object.entries(DEPTS).forEach(([key,dept])=>{
     let earned=0,maxPts=0;
     dept.questions.forEach(q=>{
+      if(answers[q.id]==='na')return; // excluir da pontuação
       maxPts+=q.peso;
       if(answers[q.id]==='sim')earned+=q.peso;
     });
@@ -798,7 +894,7 @@ function submitForm(){
   const scores=computeScores();
   const formData={};
 
-  ['nome_empresa','responsavel','cargo','segmento','email_diag','telefone_diag','comentarios']
+  ['nome_empresa','responsavel','faturamento_medio','colaboradores','email_diag','telefone_diag','adm_erp_qual','adm_ind_faltam','com_crm_qual','comentarios']
     .forEach(id=>{const el=document.getElementById(id);if(el)formData[id]=el.value.trim();});
 
   Object.entries(answers).forEach(([k,v])=>{formData[k]=v;});
