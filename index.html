@@ -7,8 +7,12 @@
     <title>Contheo Transformação Digital — Automação Inteligente de Processos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts: carregado de forma não bloqueante -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <!-- Font Awesome: carregado de forma não bloqueante -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
     <style>
         /* ===== RESET & VARIABLES ===== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -556,7 +560,7 @@
         }
         .solutions .section-label { background: rgba(77,163,255,0.18); color: #82c5ff; border-color: rgba(77,163,255,0.2); }
         .solutions .section-title { color: white; }
-        .solutions .section-subtitle { color: rgba(255,255,255,0.62); }
+        .solutions .section-subtitle { color: rgba(255,255,255,0.78); }
 
         .sol-grid {
             display: grid;
@@ -667,7 +671,7 @@
         .footer-logo-text { font-size: 1rem; font-weight: 700; color: white; }
         .footer-tagline { font-size: 0.85rem; color: rgba(255,255,255,0.48); line-height: 1.65; margin-bottom: 0; }
 
-        .footer-col h4 {
+        .footer-col h3 {
             font-size: 0.78rem;
             font-weight: 600;
             color: white;
@@ -692,7 +696,7 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+        .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.60); }
 
         /* ===== SCROLL TO TOP ===== */
         .scroll-top {
@@ -812,6 +816,7 @@
     </nav>
 </header>
 
+<main id="conteudo-principal">
 
 <!-- ===================================================
      HERO
@@ -1121,6 +1126,8 @@
     </div>
 </section>
 
+</main><!-- /#conteudo-principal -->
+
 
 <!-- ===================================================
      FOOTER
@@ -1137,7 +1144,7 @@
             </div>
 
             <div class="footer-col">
-                <h4>Links Rápidos</h4>
+                <h3>Links Rápidos</h3>
                 <ul class="footer-links">
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#como-funciona">Como Funciona</a></li>
@@ -1147,7 +1154,7 @@
             </div>
 
             <div class="footer-col">
-                <h4>Soluções</h4>
+                <h3>Soluções</h3>
                 <ul class="footer-links">
                     <li><a href="#solucoes">Integração de Sistemas</a></li>
                     <li><a href="#solucoes">Processamento de XMLs</a></li>
@@ -1157,7 +1164,7 @@
             </div>
 
             <div class="footer-col">
-                <h4>Contato</h4>
+                <h3>Contato</h3>
                 <div class="f-contact-item">
                     <i class="fas fa-envelope" aria-hidden="true"></i>
                     <a href="mailto:contheo@contheo.com.br">contheo@contheo.com.br</a>
