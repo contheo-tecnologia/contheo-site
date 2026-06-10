@@ -13,6 +13,14 @@
     <!-- Font Awesome: carregado de forma não bloqueante -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="icon" href="assets/img/favicon.png" sizes="128x128" type="image/png">
+    <link rel="icon" href="assets/img/favicon.png" sizes="64x64" type="image/png">
+    <link rel="icon" href="assets/img/favicon.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="assets/img/favicon.png" sizes="16x16" type="image/png">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/favicon.png" sizes="180x180">
+    <meta name="theme-color" content="#2563EB">
     <style>
         /* ===== RESET & VARIABLES ===== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -160,7 +168,10 @@
             gap: 10px;
             text-decoration: none;
             flex-shrink: 0;
+            transform: translateX(-12px);
         }
+        /* Keep logo proportional: fixed height, auto width (prevents layout shifts) */
+        .site-logo { height: 100px; width: auto; max-width: 320px; object-fit: contain; display: block; }
         .logo-mark {
             width: 38px; height: 38px;
             background: var(--primary);
@@ -753,6 +764,8 @@
             nav, .header-cta { display: none; }
             .hamburger { display: flex; }
 
+            .logo { transform: none; }
+
             .hero { padding-top: 96px; }
 
             .problems-grid  { grid-template-columns: 1fr; }
@@ -780,11 +793,7 @@
     <div class="container">
         <div class="header-inner">
             <a href="#inicio" class="logo" aria-label="Contheo Transformação Digital - Início">
-                <div class="logo-mark">C</div>
-                <div>
-                    <div class="logo-name">Contheo <span>Transformação Digital</span></div>
-                    <div class="logo-sub">Automação de Processos</div>
-                </div>
+                <img src="assets/img/logo.svg" alt="Contheo Transformação Digital" class="site-logo">
             </a>
 
             <nav aria-label="Navegação principal">
@@ -1137,8 +1146,7 @@
         <div class="footer-inner">
             <div>
                 <a href="#inicio" class="footer-logo" aria-label="Contheo Transformação Digital - Topo da página">
-                    <div class="footer-logo-mark">C</div>
-                    <span class="footer-logo-text">Contheo Transformação Digital</span>
+                    <img src="assets/img/logo.svg" alt="Contheo Transformação Digital" class="site-logo">
                 </a>
                 <p class="footer-tagline">Automação inteligente para processos empresariais. Transformamos sua operação com soluções digitais sob medida.</p>
             </div>
