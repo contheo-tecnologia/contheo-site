@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  /* ===== Brand Colors — Contheo White & Modern ===== */
+  --color-contheo-primary:      #00BFA6;
+  --color-contheo-bright:       #00E5C9;
+  --color-contheo-cyan:         #00F0D0;
+  --color-contheo-navy:         #0B2545;
+  --color-contheo-navy-light:   #133B6B;
+  --color-contheo-silver:       #64748B;
+  --color-contheo-silver-light: #94A3B8;
+  --color-contheo-bg-light:     #F8FAFC;
+  --color-contheo-border-light: #E2E8F0;
+
+  /* ===== Font Families ===== */
+  --font-family-sans:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-family-heading: var(--font-space-grotesk), var(--font-inter), sans-serif;
+
+  /* ===== Animações ===== */
+  --animate-marquee: marquee 35s linear infinite;
+
+  @keyframes marquee {
+    0%   { transform: translateX(0%);   }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   BASE (DARK THEME MODERNO — ALTO CONTRASTE E NÍTIDO)
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #080C14;
+  color: #CBD5E1;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-grotesk), var(--font-inter), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Regras de contraste para seções de fundo claro/branco */
+.bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6,
+.bg-slate-50 h1, .bg-slate-50 h2, .bg-slate-50 h3, .bg-slate-50 h4, .bg-slate-50 h5, .bg-slate-50 h6,
+[data-theme="light"] h1, [data-theme="light"] h2, [data-theme="light"] h3 {
+  color: #0F172A;
+}
+
+.bg-white p, .bg-slate-50 p, [data-theme="light"] p {
+  color: #475569;
+}
+
+/* ============================================================
+   CONTAINER ESTRUTURADO COM MARGENS LATERAIS
+   ============================================================ */
+.container-custom {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* ============================================================
+   GRADIENTES DE TEXTO MODERNOS (PALETA CONTHEO: CIANO/TEAL & PRATA)
+   ============================================================ */
+.text-gradient {
+  background: linear-gradient(135deg, #00F0D0 0%, #00E5C9 40%, #00BFA6 75%, #CBD5E1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================================
+   PILL / BADGE TECH MODERNO (DARK THEME)
+   ============================================================ */
+.pill-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 229, 201, 0.08);
+  border: 1px solid rgba(0, 229, 201, 0.3);
+  color: #00E5C9;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  box-shadow: 0 0 15px rgba(0, 229, 201, 0.12);
+}
+
+/* ============================================================
+   SCROLLBAR (DARK THEME)
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #080C14; }
+::-webkit-scrollbar-thumb { background: rgba(0, 229, 201, 0.35); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #00E5C9; }
